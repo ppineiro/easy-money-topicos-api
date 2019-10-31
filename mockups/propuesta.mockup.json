@@ -1,0 +1,9 @@
+{
+  //Propuestas a las voluntades de compra/venta
+  //Sólo Pesos uruguayos, ya que las voluntades
+  //van a ser en otra moneda y se ofrece algo en UYU
+  "usuario": "usuarioID", //Usuario Id
+  "voluntad": "voluntadID", //Voluntad Id,
+  "cotizacionOf": 36, //Number
+  "activo": "true/false" //Boolean
+}

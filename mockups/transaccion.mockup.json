@@ -1,0 +1,9 @@
+{
+  //Transaccion de la operación
+  "voluntad": "voluntadID", //Voluntad Id
+  "propuesta": "propuestaID", //Propuesta Id,
+  "fechaHora": "2014-10-19T16:36:14.197Z", //Date
+  "cotizacionBCU": 37.8, //Number
+  "califUsuarioVoluntad": 5, //Number
+  "califUsuarioPropuesta": 5 //Number
+}

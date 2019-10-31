@@ -1,0 +1,8 @@
+{
+  //Usuarios
+  "nombre": "Pablo Piñeiro", //String
+  "email": "pablopi.uy@outlook.com", //String
+  "password": "contraseña", //String
+  "promedioCalif": 4.78, //Number
+  "ubicacion": "Montevideo" //String
+}

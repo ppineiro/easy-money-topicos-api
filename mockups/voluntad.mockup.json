@@ -1,0 +1,10 @@
+{
+  //Voluntad de compra/venta de alguna divisa
+  //No puede ser Pesos uruguayos. Funciona como un cambio,
+  //yo quiero comprar o vender alguna divisa y la contraparte es en UYU
+  "usuario": "usuarioID", //Usuario Id
+  "divisa": "divisaID", //Divisa Id,
+  "monto": 700, //Number
+  "operacion": "Compra(1)/Venta(2)", //Number
+  "activo": "true/false" //Boolean
+}

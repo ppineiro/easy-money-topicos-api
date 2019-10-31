@@ -1,0 +1,6 @@
+{
+  //Monedas
+  //https://es.wikipedia.org/wiki/ISO_4217
+  "codigoISO": "USD", //String
+  "divisa": "Dólar estadounidense." //String
+}
