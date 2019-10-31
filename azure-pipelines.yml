@@ -12,10 +12,10 @@ variables:
   azureSubscription: 'b1d1dc29-befc-4e5d-9051-e6c283f1cef9'
   
   # Web app name
-  webAppName: ''
+  webAppName: 'easyMoneyApi'
   
   # Environment name
-  environmentName: ''
+  environmentName: 'Production'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
