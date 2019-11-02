@@ -4,20 +4,12 @@ const validators = require('./validators');
 
 module.exports = router => {
   router.get('/users', validators.find, handlers.find);
-  router.post('/users',
-    // validators.create, 
-    handlers.create);
+  router.post('/users', validators.create, handlers.create);
   router.get('/users/:id', validators.findOne, handlers.findOne);
 
-  router.delete(
-    '/users/:id',
-    // authorization,
-    validators.uncreate,
-    handlers.uncreate,
-  );
+  router.delete('/users/:id', validators.uncreate, handlers.uncreate);
   router.post(
     '/users/:id/changePassword',
-    // authorization,
     validators.changePassword,
     handlers.changePassword,
   );

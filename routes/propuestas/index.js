@@ -3,12 +3,7 @@ const validators = require('./validators');
 //const authorization = require('../../middlewares/authorization');
 
 module.exports = router => {
-  router.post(
-    '/propuestas',
-    //authorization,
-    // validators.create,
-    handlers.create,
-  );
+  router.post('/propuestas', validators.create, handlers.create);
   router.get('/propuestas', validators.find, handlers.find);
   router.get('/propuestas/:id', validators.findOne, handlers.findOne);
   router.get(
@@ -22,18 +17,8 @@ module.exports = router => {
     handlers.buscarPorVoluntad,
   );
 
-  router.delete(
-    '/propuestas/:id',
-    //authorization,
-    validators.uncreate,
-    handlers.uncreate,
-  );
-  router.patch(
-    '/propuestas/:id',
-    //authorization,
-    validators.update,
-    handlers.update,
-  );
+  router.delete('/propuestas/:id', validators.uncreate, handlers.uncreate);
+  router.patch('/propuestas/:id', validators.update, handlers.update);
 
   return router;
 };
