@@ -24,9 +24,11 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    promedioCalif: {
-      type: Number,
-    },
+    calificaciones: [
+      {
+        type: Number,
+      },
+    ],
   },
   {
     timestamps: true,

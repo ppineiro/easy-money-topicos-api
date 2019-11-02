@@ -3,12 +3,7 @@ const validators = require('./validators');
 //const authorization = require('../../middlewares/authorization');
 
 module.exports = router => {
-  router.post(
-    '/divisas',
-    //authorization,
-    // validators.create,
-    handlers.create,
-  );
+  router.post('/divisas', validators.create, handlers.create);
   router.get('/divisas', validators.find, handlers.find);
   router.get('/divisas/:id', validators.findOne, handlers.findOne);
   router.get(
@@ -16,18 +11,8 @@ module.exports = router => {
     validators.buscarPorCodigo,
     handlers.buscarPorCodigo,
   );
-  router.delete(
-    '/divisas/:id',
-    //authorization,
-    validators.uncreate,
-    handlers.uncreate,
-  );
-  router.patch(
-    '/divisas/:id',
-    //authorization,
-    validators.update,
-    handlers.update,
-  );
+  router.delete('/divisas/:id', validators.uncreate, handlers.uncreate);
+  router.patch('/divisas/:id', validators.update, handlers.update);
 
   return router;
 };

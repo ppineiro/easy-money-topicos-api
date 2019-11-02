@@ -6,13 +6,21 @@ const find = (req, res) => {
   Usuario.find((err, users) => {
     if (err) throw err;
     const filteredUsers = users.map(user => {
-      const { _id, nombre, email, ubicacion, promedioCalif, createdAt, updatedAt } = user;
+      const {
+        _id,
+        nombre,
+        email,
+        ubicacion,
+        calificaciones,
+        createdAt,
+        updatedAt,
+      } = user;
       return {
         _id,
         nombre,
         email,
         ubicacion,
-        promedioCalif,
+        calificaciones,
         createdAt,
         updatedAt,
       };
@@ -24,13 +32,21 @@ const find = (req, res) => {
 const findOne = (req, res) => {
   Usuario.findById(req.params.id, (err, user) => {
     if (user !== undefined && user !== null) {
-      const { _id, nombre, email, ubicacion, promedioCalif, createdAt, updatedAt } = user;
+      const {
+        _id,
+        nombre,
+        email,
+        ubicacion,
+        calificaciones,
+        createdAt,
+        updatedAt,
+      } = user;
       res.json({
         _id,
         nombre,
         email,
         ubicacion,
-        promedioCalif,
+        calificaciones,
         createdAt,
         updatedAt,
       });
@@ -47,7 +63,7 @@ const create = (req, res) => {
     email,
     password,
     ubicacion,
-    promedioCalif: 0,
+    calificaciones: [],
   });
   user.save(err => {
     if (err) {

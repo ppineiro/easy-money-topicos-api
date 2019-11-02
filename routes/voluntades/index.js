@@ -3,12 +3,7 @@ const validators = require('./validators');
 //const authorization = require('../../middlewares/authorization');
 
 module.exports = router => {
-  router.post(
-    '/voluntades',
-    //authorization,
-    // validators.create,
-    handlers.create,
-  );
+  router.post('/voluntades', validators.create, handlers.create);
   router.get('/voluntades', validators.find, handlers.find);
   router.get('/voluntades/:id', validators.findOne, handlers.findOne);
   router.get(
@@ -22,18 +17,8 @@ module.exports = router => {
     handlers.buscarPorDivisa,
   );
 
-  router.delete(
-    '/voluntades/:id',
-    //authorization,
-    validators.uncreate,
-    handlers.uncreate,
-  );
-  router.patch(
-    '/voluntades/:id',
-    //authorization,
-    validators.update,
-    handlers.update,
-  );
+  router.delete('/voluntades/:id', validators.uncreate, handlers.uncreate);
+  router.patch('/voluntades/:id', validators.update, handlers.update);
 
   return router;
 };
