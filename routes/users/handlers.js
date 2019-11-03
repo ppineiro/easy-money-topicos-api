@@ -141,13 +141,13 @@ const forgotPassword = (req, res) => {
           {
             recipient: user.email,
             subject: 'Nueva contraseña',
-            text: `Hola!\n\nTu nueva contraseña es ${codeStr}`,
+            text: `Hola!\n\nTu nueva contraseña es ${String(codeStr)}`,
           },
           error => {
             if (error) {
               res.sendStatus(500);
             }
-            user.usuarioPassword = codeStr;
+            user.usuarioPassword = String(codeStr);
             user.save();
             res.sendStatus(200);
           },
