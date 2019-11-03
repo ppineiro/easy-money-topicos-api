@@ -13,7 +13,11 @@ const app = express();
 app.use(cors());
 app.use(errors());
 app.use(bodyParser({ limit: '5mb' }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  }),
+);
 app.use(bodyParser.json());
 app.use('/', routes(router));
 
