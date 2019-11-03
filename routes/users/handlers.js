@@ -139,15 +139,15 @@ const forgotPassword = (req, res) => {
         const codeStr = `${code}`.padStart(5, '0');
         sendEmail(
           {
-            recipient: user.usuarioEmail,
+            recipient: user.email,
             subject: 'Nueva contraseña',
-            text: `Hola! Tu nueva contraseña es:\n${codeStr}`,
+            text: `Hola!\n\nTu nueva contraseña es ${codeStr}`,
           },
           error => {
             if (error) {
               res.sendStatus(500);
             }
-            user.password = codeStr;
+            user.usuarioPassword = codeStr;
             user.save();
             res.sendStatus(200);
           },
