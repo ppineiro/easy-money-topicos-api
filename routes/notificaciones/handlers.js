@@ -8,18 +8,19 @@ const notificarTransaccion = (req, res) => {
     textoVoluntad,
   } = req.body;
 
-  sendEmail(
-    {
-      recipient: emailPropuesta,
-      subject: 'Nueva transacción',
-      text: textoPropuesta,
-    },
-    error => {
-      if (error) {
-        res.sendStatus(500);
-      }
-    },
-  );
+  //   sendEmail(
+  //     {
+  //       recipient: emailPropuesta,
+  //       subject: 'Nueva transacción',
+  //       text: textoPropuesta,
+  //     },
+  //     error => {
+  //       if (error) {
+  //         res.sendStatus(500);
+  //       }
+  //       //   res.sendStatus(200);
+  //     },
+  //   );
 
   sendEmail(
     {
@@ -31,6 +32,7 @@ const notificarTransaccion = (req, res) => {
       if (error) {
         res.sendStatus(500);
       }
+      res.sendStatus(200);
     },
   );
 };
