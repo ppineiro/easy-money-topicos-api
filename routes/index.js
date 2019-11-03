@@ -4,6 +4,7 @@ const voluntades = require('./voluntades');
 const propuestas = require('./propuestas');
 const sessions = require('./sessions');
 const transacciones = require('./transacciones');
+const notificaciones = require('./notificaciones');
 
 const resourceRoutes = [
   voluntades,
@@ -12,6 +13,7 @@ const resourceRoutes = [
   sessions,
   divisas,
   users,
+  notificaciones,
 ];
 
 module.exports = router => {
