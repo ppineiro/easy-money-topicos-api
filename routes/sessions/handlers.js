@@ -6,16 +6,14 @@ const find = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, usuario) => {
     if (err) {
       res.sendStatus(401).json({ error: 'Email o contraseña incorrecta.' });
-    }
-    if (usuario) {
+    } else {
       usuario
         .comparePassword(req.body.password, usuario.password)
         .then(result => {
           if (result) {
-            console.log(usuario);
             const token = jwt.sign(
               {
-                id: usuario.id,
+                id: usuario._id,
                 email: usuario.email,
                 nombre: usuario.nombre,
                 ubicacion: usuario.ubicacion,
@@ -23,15 +21,13 @@ const find = (req, res) => {
               'easymoney',
               { expiresIn: '2h' },
             );
-            res.status(200).send(res.json({ token, message: 'Autenticado' }));
+            res.sendStatus(200).json({ token, message: 'Autenticado' });
           } else {
             res
               .sendStatus(401)
               .json({ error: 'Correo o contraseña incorrecta.' });
           }
         });
-    } else {
-      res.sendStatus(401).json({ error: 'Correo o contraseña incorrecta.' });
     }
   });
 };

@@ -147,7 +147,7 @@ const forgotPassword = (req, res) => {
             if (error) {
               res.sendStatus(500);
             }
-            user.usuarioPassword = String(codeStr);
+            user.password = String(codeStr);
             user.save();
             res.sendStatus(200);
           },
