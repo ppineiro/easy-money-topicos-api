@@ -21,7 +21,7 @@ const find = (req, res) => {
               'easymoney',
               { expiresIn: '2h' },
             );
-            res.sendStatus(200).json({ token, message: 'Autenticado' });
+            res.status(200).send({ token, message: 'Autenticado' });
           } else {
             res
               .sendStatus(401)
