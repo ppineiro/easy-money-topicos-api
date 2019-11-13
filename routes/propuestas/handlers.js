@@ -18,7 +18,6 @@ const find = (req, res) => {
 const findOne = (req, res) => {
   Propuesta.findOne({
     _id: req.params.id,
-    activo: true,
   })
     .populate('usuario')
     .populate('voluntad')
@@ -36,7 +35,6 @@ const findOne = (req, res) => {
 const buscarPorUsuario = (req, res) => {
   Propuesta.find({
     usuario: req.params.usuario,
-    activo: true,
   })
     .populate('usuario')
     .populate('voluntad')
@@ -54,7 +52,6 @@ const buscarPorUsuario = (req, res) => {
 const buscarPorVoluntad = (req, res) => {
   Propuesta.find({
     voluntad: req.params.voluntad,
-    activo: true,
   })
     .populate('usuario')
     .populate('voluntad')
