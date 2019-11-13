@@ -1,13 +1,13 @@
 const Propuesta = require('../../models/propuesta');
 
 const find = (req, res) => {
-  Propuesta.find({})
+  Propuesta.find({ activo: true })
     .populate('usuario')
     .populate('voluntad')
     .exec((err, propuestas) => {
       if (err) {
         res.status(404).json({
-          error: 'Algo salió mal.'
+          error: 'Algo salió mal.',
         });
       } else {
         res.json(propuestas);
@@ -17,14 +17,14 @@ const find = (req, res) => {
 
 const findOne = (req, res) => {
   Propuesta.findOne({
-      _id: req.params.id
-    })
+    _id: req.params.id,
+  })
     .populate('usuario')
     .populate('voluntad')
     .exec((err, query_response) => {
       if (err) {
         res.status(404).json({
-          error: 'Propuesta no encontrada.'
+          error: 'Propuesta no encontrada.',
         });
       } else {
         res.json(query_response);
@@ -34,14 +34,14 @@ const findOne = (req, res) => {
 
 const buscarPorUsuario = (req, res) => {
   Propuesta.find({
-      usuario: req.params.usuario
-    })
+    usuario: req.params.usuario,
+  })
     .populate('usuario')
     .populate('voluntad')
     .exec((err, query_response) => {
       if (err) {
         res.status(404).json({
-          error: 'Propuesta no encontrada.'
+          error: 'Propuesta no encontrada.',
         });
       } else {
         res.json(query_response);
@@ -51,15 +51,15 @@ const buscarPorUsuario = (req, res) => {
 
 const buscarPorVoluntad = (req, res) => {
   Propuesta.find({
-      voluntad: req.params.voluntad
-    })
+    voluntad: req.params.voluntad,
+  })
     .populate('usuario')
     .populate('voluntad')
     .populate('divisa')
     .exec((err, query_response) => {
       if (err) {
         res.status(404).json({
-          error: 'Propuesta no encontrada.'
+          error: 'Propuesta no encontrada.',
         });
       } else {
         res.json(query_response);
@@ -68,11 +68,7 @@ const buscarPorVoluntad = (req, res) => {
 };
 
 const create = (req, res) => {
-  const {
-    usuario,
-    voluntad,
-    cotizacionOf
-  } = req.body;
+  const { usuario, voluntad, cotizacionOf } = req.body;
 
   const propuesta = new Propuesta({
     usuario,
@@ -83,7 +79,7 @@ const create = (req, res) => {
   propuesta.save(err => {
     if (err) {
       res.status(400).json({
-        error: 'La Propuesta no se puede agregar.'
+        error: 'La Propuesta no se puede agregar.',
       });
     } else {
       res.status(201).json(propuesta);
@@ -92,33 +88,60 @@ const create = (req, res) => {
 };
 
 const uncreate = (req, res) => {
-  Propuesta.deleteOne({
-    _id: req.params.id
-  }, err => {
-    if (err) {
-      res.status(404).json({
-        error: 'La Propuesta no se puede eliminar.'
-      });
-    } else {
-      res.status(200).json('Propuesta eliminada correctamente.');
-    }
-  });
+  Propuesta.deleteOne(
+    {
+      _id: req.params.id,
+    },
+    err => {
+      if (err) {
+        res.status(404).json({
+          error: 'La Propuesta no se puede eliminar.',
+        });
+      } else {
+        res.status(200).json('Propuesta eliminada correctamente.');
+      }
+    },
+  );
 };
 
 const update = (req, res) => {
-  Propuesta.updateOne({
-    _id: req.params.id
-  }, {
-    $set: req.body
-  }, err => {
-    if (err) {
-      res.status(404).json({
-        error: 'La Propuesta no se puede modificar.'
-      });
-    } else {
-      res.status(200).json('Propuesta modificada correctamente.');
-    }
-  });
+  Propuesta.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      $set: req.body,
+    },
+    err => {
+      if (err) {
+        res.status(404).json({
+          error: 'La Propuesta no se puede modificar.',
+        });
+      } else {
+        res.status(200).json('Propuesta modificada correctamente.');
+      }
+    },
+  );
+};
+
+const inactivate = (req, res) => {
+  Propuesta.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      activo: false,
+    },
+    err => {
+      if (err) {
+        res.status(404).json({
+          error: 'La Propuesta no se puede modificar.',
+        });
+      } else {
+        res.status(200).json('Propuesta inactivada correctamente.');
+      }
+    },
+  );
 };
 
 module.exports = {
@@ -127,6 +150,7 @@ module.exports = {
   create,
   uncreate,
   update,
+  inactivate,
   buscarPorUsuario,
   buscarPorVoluntad,
 };

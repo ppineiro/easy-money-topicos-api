@@ -1,12 +1,12 @@
 const sendEmail = require('../../utils/email');
 
 const notificarTransaccionVoluntad = (req, res) => {
-  const { emailVoluntad, textoVoluntad } = req.body;
+  const { asunto, emailVoluntad, textoVoluntad } = req.body;
 
   sendEmail(
     {
       recipient: emailVoluntad,
-      subject: 'Nueva transacción',
+      subject: asunto,
       text: textoVoluntad,
     },
     error => {
@@ -19,12 +19,12 @@ const notificarTransaccionVoluntad = (req, res) => {
 };
 
 const notificarTransaccionPropuesta = (req, res) => {
-  const { emailPropuesta, textoPropuesta } = req.body;
+  const { asunto, emailPropuesta, textoPropuesta } = req.body;
 
   sendEmail(
     {
       recipient: emailPropuesta,
-      subject: 'Nueva transacción',
+      subject: asunto,
       text: textoPropuesta,
     },
     error => {
