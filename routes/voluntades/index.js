@@ -19,6 +19,11 @@ module.exports = router => {
 
   router.delete('/voluntades/:id', validators.uncreate, handlers.uncreate);
   router.patch('/voluntades/:id', validators.update, handlers.update);
+  router.patch(
+    '/voluntades/inactivate/:id',
+    validators.inactivate,
+    handlers.inactivate,
+  );
 
   return router;
 };
