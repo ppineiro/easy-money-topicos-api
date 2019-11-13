@@ -14,7 +14,7 @@ const find = (req, res) => {
 };
 
 const findOne = (req, res) => {
-  Voluntad.findOne({ _id: req.params.id, activo: true })
+  Voluntad.findOne({ _id: req.params.id })
     .populate('usuario')
     .populate('divisa')
     .exec((err, query_response) => {
@@ -27,7 +27,7 @@ const findOne = (req, res) => {
 };
 
 const buscarPorUsuario = (req, res) => {
-  Voluntad.find({ usuario: req.params.usuario, activo: true })
+  Voluntad.find({ usuario: req.params.usuario })
     .populate('usuario')
     .populate('divisa')
     .exec((err, query_response) => {
@@ -40,7 +40,7 @@ const buscarPorUsuario = (req, res) => {
 };
 
 const buscarPorDivisa = (req, res) => {
-  Voluntad.find({ divisa: req.params.divisa, activo: true })
+  Voluntad.find({ divisa: req.params.divisa })
     .populate('usuario')
     .populate('divisa')
     .exec((err, query_response) => {
