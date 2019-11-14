@@ -6,20 +6,27 @@ const find = (req, res) => {
       path: 'voluntad',
       populate: {
         path: 'usuario',
-        model: 'Usuario'
-      }
+        model: 'Usuario',
+      },
+    })
+    .populate({
+      path: 'voluntad',
+      populate: {
+        path: 'divisa',
+        model: 'Divisa',
+      },
     })
     .populate({
       path: 'propuesta',
       populate: {
         path: 'usuario',
-        model: 'Usuario'
-      }
+        model: 'Usuario',
+      },
     })
     .exec((err, transacciones) => {
       if (err) {
         res.status(404).json({
-          error: 'Algo salió mal.'
+          error: 'Algo salió mal.',
         });
       } else {
         res.json(transacciones);
@@ -29,26 +36,33 @@ const find = (req, res) => {
 
 const findOne = (req, res) => {
   Transaccion.findOne({
-      _id: req.params.id
-    })
+    _id: req.params.id,
+  })
     .populate({
       path: 'voluntad',
       populate: {
         path: 'usuario',
-        model: 'Usuario'
-      }
+        model: 'Usuario',
+      },
+    })
+    .populate({
+      path: 'voluntad',
+      populate: {
+        path: 'divisa',
+        model: 'Divisa',
+      },
     })
     .populate({
       path: 'propuesta',
       populate: {
         path: 'usuario',
-        model: 'Usuario'
-      }
+        model: 'Usuario',
+      },
     })
     .exec((err, query_response) => {
       if (err) {
         res.status(404).json({
-          error: 'Transaccion no encontrada.'
+          error: 'Transaccion no encontrada.',
         });
       } else {
         res.json(query_response);
@@ -58,14 +72,33 @@ const findOne = (req, res) => {
 
 const buscarPorVoluntad = (req, res) => {
   Transaccion.find({
-      voluntad: req.params.voluntad
+    voluntad: req.params.voluntad,
+  })
+    .populate({
+      path: 'voluntad',
+      populate: {
+        path: 'usuario',
+        model: 'Usuario',
+      },
     })
-    .populate('voluntad')
-    .populate('propuesta')
+    .populate({
+      path: 'voluntad',
+      populate: {
+        path: 'divisa',
+        model: 'Divisa',
+      },
+    })
+    .populate({
+      path: 'propuesta',
+      populate: {
+        path: 'usuario',
+        model: 'Usuario',
+      },
+    })
     .exec((err, query_response) => {
       if (err) {
         res.status(404).json({
-          error: 'Transaccion no encontrada.'
+          error: 'Transaccion no encontrada.',
         });
       } else {
         res.json(query_response);
@@ -75,14 +108,33 @@ const buscarPorVoluntad = (req, res) => {
 
 const buscarPorPropuesta = (req, res) => {
   Transaccion.find({
-      propuesta: req.params.propuesta
+    propuesta: req.params.propuesta,
+  })
+    .populate({
+      path: 'voluntad',
+      populate: {
+        path: 'usuario',
+        model: 'Usuario',
+      },
     })
-    .populate('voluntad')
-    .populate('propuesta')
+    .populate({
+      path: 'voluntad',
+      populate: {
+        path: 'divisa',
+        model: 'Divisa',
+      },
+    })
+    .populate({
+      path: 'propuesta',
+      populate: {
+        path: 'usuario',
+        model: 'Usuario',
+      },
+    })
     .exec((err, query_response) => {
       if (err) {
         res.status(404).json({
-          error: 'Transaccion no encontrada.'
+          error: 'Transaccion no encontrada.',
         });
       } else {
         res.json(query_response);
@@ -110,7 +162,7 @@ const create = (req, res) => {
   transaccion.save(err => {
     if (err) {
       res.status(400).json({
-        error: 'La Transaccion no se puede agregar.'
+        error: 'La Transaccion no se puede agregar.',
       });
     } else {
       res.status(201).json(transaccion);
@@ -119,33 +171,40 @@ const create = (req, res) => {
 };
 
 const uncreate = (req, res) => {
-  Transaccion.deleteOne({
-    _id: req.params.id
-  }, err => {
-    if (err) {
-      res.status(404).json({
-        error: 'La Transaccion no se puede eliminar.'
-      });
-    } else {
-      res.status(200).json('Transaccion eliminada correctamente.');
-    }
-  });
+  Transaccion.deleteOne(
+    {
+      _id: req.params.id,
+    },
+    err => {
+      if (err) {
+        res.status(404).json({
+          error: 'La Transaccion no se puede eliminar.',
+        });
+      } else {
+        res.status(200).json('Transaccion eliminada correctamente.');
+      }
+    },
+  );
 };
 
 const update = (req, res) => {
-  Transaccion.updateOne({
-    _id: req.params.id
-  }, {
-    $set: req.body
-  }, err => {
-    if (err) {
-      res.status(404).json({
-        error: 'La Transaccion no se puede modificar.'
-      });
-    } else {
-      res.status(200).json('Transaccion modificada correctamente.');
-    }
-  });
+  Transaccion.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      $set: req.body,
+    },
+    err => {
+      if (err) {
+        res.status(404).json({
+          error: 'La Transaccion no se puede modificar.',
+        });
+      } else {
+        res.status(200).json('Transaccion modificada correctamente.');
+      }
+    },
+  );
 };
 
 module.exports = {
