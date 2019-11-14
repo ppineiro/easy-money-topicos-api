@@ -18,5 +18,6 @@ module.exports = router => {
     validators.forgotPassword,
     handlers.forgotPassword,
   );
+  router.patch('/users/:id', handlers.update);
   return router;
 };

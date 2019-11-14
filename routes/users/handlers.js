@@ -101,9 +101,9 @@ const update = (req, res) => {
     },
     err => {
       if (err) {
-        res.sendStatus(400);
+        res.status(400).json({ error: 'Error.' });
       } else {
-        res.sendStatus(200);
+        res.status(200).json({ mensaje: 'Usuario modificado' });
       }
     },
   );
