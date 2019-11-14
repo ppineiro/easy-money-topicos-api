@@ -11,9 +11,15 @@ const notificarTransaccionVoluntad = (req, res) => {
     },
     error => {
       if (error) {
-        res.sendStatus(500);
+        res.status(500).json({
+          error: 'Error',
+        });
       }
-      res.sendStatus(200);
+      res.status(200).json({
+        recipient: emailVoluntad,
+        subject: asunto,
+        text: textoVoluntad,
+      });
     },
   );
 };
@@ -29,9 +35,15 @@ const notificarTransaccionPropuesta = (req, res) => {
     },
     error => {
       if (error) {
-        res.sendStatus(500);
+        res.status(500).json({
+          error: 'Error',
+        });
       }
-      res.sendStatus(200);
+      res.status(200).json({
+        recipient: emailPropuesta,
+        subject: asunto,
+        text: textoPropuesta,
+      });
     },
   );
 };
