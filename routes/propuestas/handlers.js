@@ -127,12 +127,33 @@ const update = (req, res) => {
   );
 };
 
+const inactivate = (req, res) => {
+  Propuesta.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      activo: false,
+    },
+    err => {
+      if (err) {
+        res.status(404).json({
+          error: 'La Propuesta no se puede modificar.',
+        });
+      } else {
+        res.status(200).json('Propuesta inactivada correctamente.');
+      }
+    },
+  );
+};
+
 module.exports = {
   find,
   findOne,
   create,
   uncreate,
   update,
+  inactivate,
   buscarPorUsuario,
   buscarPorVoluntad,
 };

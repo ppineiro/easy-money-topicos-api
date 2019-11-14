@@ -91,12 +91,23 @@ const update = (req, res) => {
   });
 };
 
+const inactivate = (req, res) => {
+  Voluntad.updateOne({ _id: req.params.id }, { activo: false }, err => {
+    if (err) {
+      res.status(404).json({ error: 'La Voluntad no se puede modificar.' });
+    } else {
+      res.status(200).json('Voluntad inactivada correctamente.');
+    }
+  });
+};
+
 module.exports = {
   find,
   findOne,
   create,
   uncreate,
   update,
+  inactivate,
   buscarPorDivisa,
   buscarPorUsuario,
 };
