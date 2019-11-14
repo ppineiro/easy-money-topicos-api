@@ -18,7 +18,7 @@ module.exports = router => {
   );
 
   router.delete('/transacciones/:id', validators.uncreate, handlers.uncreate);
-  router.patch('/transacciones/:id', validators.update, handlers.update);
+  router.patch('/transacciones/:id', handlers.update);
 
   return router;
 };
