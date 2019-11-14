@@ -43,20 +43,12 @@ const update = celebrate({
   },
 });
 
-const inactivate = celebrate({
-  params: { id: Joi.string() },
-  body: {
-    activo: Joi.boolean().required(),
-  },
-});
-
 module.exports = {
   find,
   findOne,
   create,
   uncreate,
   update,
-  inactivate,
   buscarPorUsuario,
   buscarPorVoluntad,
 };
